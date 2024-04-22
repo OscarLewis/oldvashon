@@ -1,6 +1,7 @@
 # ignore dist folder
 dist/
 
+# yarn
 .yarn/*
 !.yarn/sdks
 
