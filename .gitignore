@@ -1,5 +1,8 @@
-.dist
+# ignore dist folder
+dist/
 
-.yarn
+.yarn/*
+!.yarn/sdks
 
+# who needs em
 node_modules/
