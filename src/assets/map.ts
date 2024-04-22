@@ -56,7 +56,7 @@ function checkSize() {
 // Home Button
 
 /* Add additional Home control for going back to default view */
-class RotateNorthControl extends Control {
+class HomeViewControl extends Control {
   /**
    * @param {Object} [opt_options] Control options.
    */
@@ -126,7 +126,7 @@ const map_layers = [
 const vashonMap = new Map({
   controls: defaultControls({ attribution: false }).extend([
     attribution,
-    new RotateNorthControl({}),
+    new HomeViewControl({}),
   ]),
   layers: map_layers,
   view: map_view,
