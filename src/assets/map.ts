@@ -1,11 +1,17 @@
-import { Attribution, defaults as defaultControls } from "ol/control.js";
+import "../assets/map.css";
+import houseSVG from "./house.svg";
+import {
+  Attribution,
+  Control,
+  defaults as defaultControls,
+} from "ol/control.js";
+import type { Coordinate } from "ol/coordinate";
 import { fromLonLat } from "ol/proj";
 import Map from "ol/Map";
-import SPL from "spl.js";
 import TileLayer from "ol/layer/Tile";
-import type { Coordinate } from "ol/coordinate";
 import View from "ol/View";
 import XYZ from "ol/source/XYZ";
+import SPL from "spl.js";
 
 // Spatialite
 const db = await SPL().then((spl: any) => spl.db());
@@ -47,6 +53,49 @@ function checkSize() {
   }
 }
 
+// Home Button
+
+/* Add additional Home control for going back to default view */
+class RotateNorthControl extends Control {
+  /**
+   * @param {Object} [opt_options] Control options.
+   */
+  constructor(opt_options: any) {
+    const options = opt_options || {};
+
+    // Create a new button with some text in it
+    const button = document.createElement("button");
+    button.innerHTML =
+      "<img src=" +
+      houseSVG +
+      " style=\x22display: block; margin-left: auto; margin-right: auto;\x22\x22/>";
+
+    // Create a div so we can style the button
+    const element = document.createElement("div");
+    element.className = "home-button ol-unselectable ol-control";
+    element.appendChild(button);
+
+    // Access and set properties on class
+    super({
+      element: element,
+      target: options.target,
+    });
+
+    // Add the event listener
+    button.addEventListener("click", this.handleHomeButton.bind(this), false);
+  }
+
+  // When the button is clicked than animate the view to it's initial state
+  handleHomeButton() {
+    let view = this.getMap()?.getView();
+    view?.animate({
+      center: initial_center,
+      zoom: initial_zoom,
+      duration: 250,
+    });
+  }
+}
+
 // Setup Vashon Coordinates
 const vashoncoords: Coordinate = [-122.46005576724342, 47.42296763830496];
 const vashonWebMercator: Coordinate = fromLonLat(vashoncoords);
@@ -75,13 +124,19 @@ const map_layers = [
 
 // Create the map, not attached to a target
 const vashonMap = new Map({
-  controls: defaultControls({ attribution: false }).extend([attribution]),
+  controls: defaultControls({ attribution: false }).extend([
+    attribution,
+    new RotateNorthControl({}),
+  ]),
   layers: map_layers,
   view: map_view,
 });
 
 // On size change run the checkSize function
 vashonMap.on("change:size", checkSize);
+
+const initial_zoom = vashonMap.getView().getZoom()!;
+const initial_center = vashonMap.getView().getCenter();
 
 const setupMap = (node: HTMLDivElement) => {
   // Create map object
