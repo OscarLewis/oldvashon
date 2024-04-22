@@ -1,10 +1,28 @@
-import type { Coordinate } from "ol/coordinate";
-import Map from "ol/Map";
-import View from "ol/View";
-import TileLayer from "ol/layer/Tile";
-import XYZ from "ol/source/XYZ";
-import { fromLonLat } from "ol/proj";
 import { Attribution, defaults as defaultControls } from "ol/control.js";
+import { fromLonLat } from "ol/proj";
+import Map from "ol/Map";
+import SPL from "spl.js";
+import TileLayer from "ol/layer/Tile";
+import type { Coordinate } from "ol/coordinate";
+import View from "ol/View";
+import XYZ from "ol/source/XYZ";
+
+// Spatialite
+const db = await SPL().then((spl: any) => spl.db());
+
+// Check to see if we can query the db
+let sp_name: string = await db
+  .exec("SELECT ? AS hello", ["spatialite"])
+  .get.objs.then((results: any) => {
+    return results[0].hello;
+  })
+  .catch((err: any) => console.log(err));
+
+// get the version number
+let sp_version: number = await db.exec("SELECT spatialite_version()").get.first;
+
+// print to the console
+console.log(sp_name + " version is: " + sp_version);
 
 // Attributions
 const attribution = new Attribution({
