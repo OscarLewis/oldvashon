@@ -7,3 +7,6 @@ dist/
 
 # who needs em
 node_modules/
+
+# qgis
+qgis/
