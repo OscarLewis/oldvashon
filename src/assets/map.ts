@@ -109,7 +109,7 @@ const map_view = new View({
   //   -13633746.066319598, 6010241.956326595, -13630636.034731245,
   //   6012535.06717515,
   // ],
-  constrainOnlyCenter: true,
+  // constrainOnlyCenter: true,
 });
 
 // Create map layers
