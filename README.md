@@ -1,4 +1,4 @@
-# Old Vashon
+# Vanishing Vashon
 
 A project to preserve old memories of [Vashon Island](https://en.wikipedia.org/wiki/Vashon%2C_Washington) online.
 
