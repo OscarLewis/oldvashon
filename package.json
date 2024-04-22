@@ -23,6 +23,7 @@
   },
   "packageManager": "yarn@4.1.1",
   "dependencies": {
-    "ol": "^9.1.0"
+    "ol": "^9.1.0",
+    "spl.js": "^0.1.1"
   }
 }
