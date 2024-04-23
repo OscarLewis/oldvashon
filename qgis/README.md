@@ -8,10 +8,11 @@ Please edit features using the local sqlite file and then once your changes are 
 
 Each feature contains the following attributes:
 
+- name: The name of the feature.
+- long_name: A different, possibly more official name for the feature
 - description: A brief description of the feature.
 - history: A longer full history of the feature, this should be written in markdown and copied from a file in the `markdown_files` directory.
-- name: The name of the feature.
-- long_name: A different, possibly more official name for the feature (example: Harbor Merchantile instead of Burton Store).
+  (example: Harbor Merchantile instead of Burton Store).
 - start_year: A date (when a business opened, when some art got installed, etc.)
 - end_year: A date (when a business closed, etc.)
 - img_url: a link to an image of the feature (can be local like the streetview images in the `public` dir, or somewhere else on the internet).
