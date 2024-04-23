@@ -1,6 +1,7 @@
 import SPL from "spl.js";
 
-let query = "select name, author, geom as geometry from vashon_points;";
+let query =
+  "select name, author, history, summary, geom as geometry from vashon_points;";
 
 let feature_collection = (async () => {
   try {
@@ -28,7 +29,12 @@ let feature_collection = (async () => {
           features: response.map((response) => ({
             type: "Feature",
             geometry: response.geometry,
-            properties: { name: response.name, author: response.author },
+            properties: {
+              name: response.name,
+              author: response.author,
+              history: response.history,
+              sumarry: response.sumarry,
+            },
           })),
         };
         return collection;

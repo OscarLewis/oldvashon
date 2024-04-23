@@ -22,9 +22,11 @@ import View from "ol/View";
 import XYZ from "ol/source/XYZ";
 import Overlay from "ol/Overlay";
 import { register } from "ol/proj/proj4";
+import { marked } from "marked";
 
 // Proj4 import
 import proj4 from "proj4";
+import { popupContents } from "./popupcontent";
 
 // Define EPSG:2285 (NAD83 / Washington North (ftUS))
 // This definition comes from QGIS
@@ -206,11 +208,7 @@ vashonMap.on("singleclick", function (evt) {
   );
   if (feature) {
     const coordinate = evt.coordinate;
-    let popupContent = "<div>";
-    popupContent += "<p class='text-xl'>" + feature.get("name") + "</p>";
-    popupContent +=
-      "<p class='text-sm'>" + "Author: " + feature.get("author") + "</p>";
-    popupContent += "</div>";
+    let popupContent = popupContents(feature);
     content.innerHTML = popupContent;
     overlay.setPosition(coordinate);
     // content.classList.toggle("popup-active");
