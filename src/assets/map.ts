@@ -205,13 +205,29 @@ vashonMap.on("singleclick", function (evt) {
   );
   if (feature) {
     const coordinate = evt.coordinate;
-    let popupContent = "<h1>" + feature.get("name") + "</h1>";
+    let popupContent = "<div>";
+    popupContent += "<p class='text-xl'>" + feature.get("name") + "</p>";
+    popupContent += "</div>";
     content.innerHTML = popupContent;
     overlay.setPosition(coordinate);
+    // content.classList.toggle("popup-active");
   } else {
     overlay.setPosition(undefined);
+    // content.classList.toggle("popup-active");
   }
 });
+
+// window.addEventListener("keydown", (evt) => {
+//   let isEscape = false;
+//   if ("key" in evt) {
+//     isEscape = evt.key === "Escape" || evt.key === "Esc";
+//   } else {
+//     isEscape = evt["keyCode"] === 27;
+//   }
+//   if (isEscape && document.body.classList.contains("popup-active")) {
+//     overlay.setPosition(undefined);
+//   }
+// });
 
 const setupMap = (node: HTMLDivElement) => {
   // Create map object
