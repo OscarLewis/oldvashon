@@ -16,12 +16,6 @@ let feature_collection = (async () => {
     // create a db from the data
     let db = await spl.db(data);
 
-    // Print the local srid
-    const srid = await db.exec("SELECT SRID(geom) FROM vashon_points").get
-      .first;
-
-    console.log("local srid is " + srid);
-
     // Get the features from the database
     let feature_collection = await db
       .exec("select name, author, geom as geometry from vashon_points")
