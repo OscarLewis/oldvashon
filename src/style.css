@@ -10,6 +10,11 @@
     /* visited:text-purple-600 */;
 }
 
+.bluelink_no_underline {
+  @apply bluelinkcolor;
+  text-decoration: none;
+}
+
 div.markdownlinkcolor > p > a {
   @apply underline 
     text-blue-600 
