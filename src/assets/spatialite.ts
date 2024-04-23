@@ -1,5 +1,7 @@
 import SPL from "spl.js";
 
+let query = "select name, author, geom as geometry from vashon_points;";
+
 let feature_collection = (async () => {
   try {
     // Location of spatialite db
@@ -18,7 +20,7 @@ let feature_collection = (async () => {
 
     // Get the features from the database
     let feature_collection = await db
-      .exec("select name, author, geom as geometry from vashon_points")
+      .exec(query)
       .get.objs.then((response: any[]) => {
         // Create GeoJSON style FeatureCollection
         const collection = {
