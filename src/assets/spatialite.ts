@@ -25,14 +25,14 @@ let feature_collection = (async () => {
     // Get the features from the database
     let feature_collection = await db
       .exec("select name, author, geom as geometry from vashon_points")
-      .get.objs.then((geoms: any[]) => {
+      .get.objs.then((response: any[]) => {
         // Create GeoJSON style FeatureCollection
         const collection = {
           type: "FeatureCollection",
-          features: geoms.map((geoms) => ({
+          features: response.map((response) => ({
             type: "Feature",
-            geometry: geoms.geometry,
-            properties: { name: geoms.name, author: geoms.author },
+            geometry: response.geometry,
+            properties: { name: response.name, author: response.author },
           })),
         };
         return collection;
