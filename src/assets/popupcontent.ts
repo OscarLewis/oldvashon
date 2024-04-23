@@ -20,7 +20,7 @@ export function popupContents(feature: FeatureLike): string {
   // Name
   if (feature.get("name") != null && feature.get("name") != undefined) {
     popupContent +=
-      "<div class='flex'><p class='text-xl mx-auto'>" +
+      "<div class='flex'><p class='text-lg mx-auto'>" +
       feature.get("name") +
       "</p></div>";
   }
