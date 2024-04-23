@@ -12,20 +12,21 @@ import {
 } from "ol/control.js";
 import VectorSource from "ol/source/Vector";
 import { Circle as CircleStyle, Fill, Stroke, Style } from "ol/style.js";
-import { fromLonLat, toLonLat } from "ol/proj";
+import { fromLonLat } from "ol/proj";
 import GeoJSON from "ol/format/GeoJSON";
 import Map from "ol/Map";
 import TileLayer from "ol/layer/Tile";
-import { toStringHDMS, type Coordinate } from "ol/coordinate";
+import { type Coordinate } from "ol/coordinate";
 import VectorLayer from "ol/layer/Vector";
 import View from "ol/View";
 import XYZ from "ol/source/XYZ";
 import Overlay from "ol/Overlay";
 import { register } from "ol/proj/proj4";
-import { marked } from "marked";
 
 // Proj4 import
 import proj4 from "proj4";
+
+// Popup content
 import { popupContents } from "./popupcontent";
 
 // Define EPSG:2285 (NAD83 / Washington North (ftUS))
@@ -53,7 +54,7 @@ const imagery_attribution_text =
 
 // Function to check the size of the map and collapse the attribution
 function checkSize() {
-  if (null !== vashonMap && undefined !== vashonMap) {
+  if (null != vashonMap && undefined != vashonMap) {
     // @ts-ignore: possibly undefined but already made sure vashonMap is defined
     const small = vashonMap.getSize()[0] < 600;
     attribution.setCollapsible(small);
@@ -191,9 +192,6 @@ const point_style = new Style({
   }),
 });
 
-// Get feature geometry from spatialite.ts
-const feature_geometry = await feature_collection;
-
 /**
  * Add a click handler to the map to render the popup.
  */
@@ -230,31 +228,34 @@ vashonMap.on("singleclick", function (evt) {
 //   }
 // });
 
+// Get feature geometry from spatialite.ts
+const feature_geometry = await feature_collection;
+
+// Log for debug
+console.log("feature collection:");
+console.log(feature_geometry);
+
+// Create a new VectorSource in GeoJSON format
+// Reproject to WebMercator
+const vector_geoson = new VectorSource({
+  features: new GeoJSON().readFeatures(feature_geometry, {
+    dataProjection: "NAD83/Washington_North",
+    featureProjection: vashonMap.getView().getProjection(),
+  }),
+});
+
+const vashonPointsVectorLayer = new VectorLayer({
+  className: "vashonPoint",
+  source: vector_geoson,
+  style: point_style,
+});
+
+// Add the layer to the map
+vashonMap.addLayer(vashonPointsVectorLayer);
+
 const setupMap = (node: HTMLDivElement) => {
   // Create map object
   vashonMap.setTarget(node.id);
-
-  // Log for debug
-  console.log("feature collection:");
-  console.log(feature_geometry);
-
-  // Create a new VectorSource in GeoJSON format
-  // Reproject to WebMercator
-  const vector_geoson = new VectorSource({
-    features: new GeoJSON().readFeatures(feature_geometry, {
-      dataProjection: "NAD83/Washington_North",
-      featureProjection: vashonMap.getView().getProjection(),
-    }),
-  });
-
-  const vashonPointsVectorLayer = new VectorLayer({
-    className: "vashonPoint",
-    source: vector_geoson,
-    style: point_style,
-  });
-
-  // Add the layer to the map
-  vashonMap.addLayer(vashonPointsVectorLayer);
 
   // vashonMap.getView().fit(vector_geoson.getExtent());
   checkSize();
