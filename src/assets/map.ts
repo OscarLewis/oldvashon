@@ -5,6 +5,7 @@ import feature_collection from "./spatialite";
 
 // OpenLayers imports
 import {
+  FullScreen,
   Attribution,
   Control,
   defaults as defaultControls,
@@ -12,7 +13,6 @@ import {
 import VectorSource from "ol/source/Vector";
 import { Circle as CircleStyle, Fill, Stroke, Style } from "ol/style.js";
 import { fromLonLat, toLonLat } from "ol/proj";
-import { Vector } from "ol/source";
 import GeoJSON from "ol/format/GeoJSON";
 import Map from "ol/Map";
 import TileLayer from "ol/layer/Tile";
@@ -164,6 +164,7 @@ const vashonMap = new Map({
   controls: defaultControls({ attribution: false }).extend([
     attribution,
     new HomeViewControl({}),
+    new FullScreen(),
   ]),
   layers: map_layers,
   overlays: [overlay],
