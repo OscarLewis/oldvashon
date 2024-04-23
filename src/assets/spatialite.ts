@@ -1,5 +1,6 @@
 import SPL from "spl.js";
-(async () => {
+
+let feature_collection = await (async () => {
   try {
     // Location of spatialite db
     let spatialite_db = "/oldvashon.sqlite";
@@ -13,38 +14,32 @@ import SPL from "spl.js";
     );
 
     // create a db from the data
-    // spl.db(data);
+    let db = await spl.db(data);
 
-    let db = await spl
-      .mount("proj", [
-        // Mounts proj.db required for transformation of EPSG 2285 to 3857.
-        // Instead of downloading the entire db spl/sqlite will only fetch required db pages.
-        {
-          name: "proj.db",
-          data: new URL(
-            "../dist/proj/proj.db",
-            window.location.href
-          ).toString(),
-        },
-      ])
-      .db(data);
-
-    // Check the tables
-    let tables = await db.exec(
-      "SELECT * FROM sqlite_master where type='table';"
-    ).get.objs;
-    console.log(tables);
-
-    // Check vashon_points table
-    let vashon_points = await db.exec("SELECT * FROM vashon_points;").get.objs;
-    console.log(vashon_points);
-
-    // What's that srid?!
+    // Print the local srid
     const srid = await db.exec("SELECT SRID(geom) FROM vashon_points").get
       .first;
 
-    console.log(srid);
+    console.log("local srid is " + srid);
+
+    // Get the features from the database
+    let feature_collection = await db
+      .exec("select name, author, geom as geometry from vashon_points")
+      .get.objs.then((geoms: any[]) => {
+        const collection = {
+          type: "FeatureCollection",
+          features: geoms.map((geoms) => ({
+            type: "Feature",
+            geometry: geoms.geometry,
+            properties: { name: geoms.name, author: geoms.author },
+          })),
+        };
+        return collection;
+      });
+    return feature_collection;
   } catch (err) {
     console.log(err);
   }
 })();
+
+export default feature_collection;

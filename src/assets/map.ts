@@ -1,34 +1,36 @@
+// Local imports
 import "../assets/map.css";
 import houseSVG from "./house.svg";
+import feature_collection from "./spatialite";
+
+// OpenLayers imports
 import {
   Attribution,
   Control,
   defaults as defaultControls,
 } from "ol/control.js";
-import type { Coordinate } from "ol/coordinate";
+import VectorSource from "ol/source/Vector";
+import { Circle as CircleStyle, Fill, Stroke, Style } from "ol/style.js";
 import { fromLonLat } from "ol/proj";
+import { Vector } from "ol/source";
+import GeoJSON from "ol/format/GeoJSON";
 import Map from "ol/Map";
 import TileLayer from "ol/layer/Tile";
+import type { Coordinate } from "ol/coordinate";
+import VectorLayer from "ol/layer/Vector";
 import View from "ol/View";
 import XYZ from "ol/source/XYZ";
-import SPL from "spl.js";
+import proj4 from "proj4";
+import { register } from "ol/proj/proj4";
 
-// Spatialite
-const db = await SPL().then((spl: any) => spl.db());
+// Define EPSG:2285 (NAD83 / Washington North (ftUS))
+proj4.defs(
+  "NAD83/Washington_North",
+  "+proj=lcc +lat_0=47 +lon_0=-120.833333333333 +lat_1=48.7333333333333 +lat_2=47.5 +x_0=500000.0001016 +y_0=0 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=us-ft +no_defs"
+);
 
-// Check to see if we can query the db
-let sp_name: string = await db
-  .exec("SELECT ? AS hello", ["spatialite"])
-  .get.objs.then((results: any) => {
-    return results[0].hello;
-  })
-  .catch((err: any) => console.log(err));
-
-// get the version number
-let sp_version: number = await db.exec("SELECT spatialite_version()").get.first;
-
-// print to the console
-console.log(sp_name + " version is: " + sp_version);
+// Register proj4 transformations with OpenLayers
+register(proj4);
 
 // Attributions
 const attribution = new Attribution({
@@ -105,6 +107,7 @@ const map_view = new View({
   center: vashonWebMercator,
   zoom: 12,
   minZoom: 11,
+
   // extent: [
   //   -13633746.066319598, 6010241.956326595, -13630636.034731245,
   //   6012535.06717515,
@@ -138,10 +141,44 @@ vashonMap.on("change:size", checkSize);
 const initial_zoom = vashonMap.getView().getZoom()!;
 const initial_center = vashonMap.getView().getCenter();
 
+// Set color for points on map
+const color_cherry_coke = [168, 56, 0, 100];
+
+/* Create a new point style for our dots on the map */
+const point_style = new Style({
+  image: new CircleStyle({
+    radius: 3,
+    fill: new Fill({ color: color_cherry_coke }),
+    stroke: new Stroke({ color: color_cherry_coke, width: 1 }),
+  }),
+});
+
+// Get feature geometry from spatialite.ts
+const feature_geometry = await feature_collection;
+
 const setupMap = (node: HTMLDivElement) => {
   // Create map object
   vashonMap.setTarget(node.id);
 
+  // Log for debug
+  console.log("feature collection:");
+  console.log(feature_geometry);
+
+  // Create a new VectorSource in GeoJSON format
+  // Reproject to WebMercator
+  const vector_geoson = new VectorSource({
+    features: new GeoJSON().readFeatures(feature_geometry, {
+      dataProjection: "NAD83/Washington_North",
+      featureProjection: vashonMap.getView().getProjection(),
+    }),
+  });
+
+  // Add the layer to the map
+  vashonMap.addLayer(
+    new VectorLayer({ source: vector_geoson, style: point_style })
+  );
+
+  // vashonMap.getView().fit(vector_geoson.getExtent());
   checkSize();
 };
 
