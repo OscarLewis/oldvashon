@@ -208,6 +208,8 @@ vashonMap.on("singleclick", function (evt) {
     const coordinate = evt.coordinate;
     let popupContent = "<div>";
     popupContent += "<p class='text-xl'>" + feature.get("name") + "</p>";
+    popupContent +=
+      "<p class='text-sm'>" + "Author: " + feature.get("author") + "</p>";
     popupContent += "</div>";
     content.innerHTML = popupContent;
     overlay.setPosition(coordinate);
