@@ -5,7 +5,9 @@
   import "../assets/spatialite";
 </script>
 
-<main><div id={viewDiv} class="map w-full h-[95.2vh]" use:setupMap /></main>
+<main>
+  <div id={viewDiv} class="map w-full h-[95.2vh]" use:setupMap />
+</main>
 
 <style>
 </style>

@@ -11,15 +11,16 @@ import {
 } from "ol/control.js";
 import VectorSource from "ol/source/Vector";
 import { Circle as CircleStyle, Fill, Stroke, Style } from "ol/style.js";
-import { fromLonLat } from "ol/proj";
+import { fromLonLat, toLonLat } from "ol/proj";
 import { Vector } from "ol/source";
 import GeoJSON from "ol/format/GeoJSON";
 import Map from "ol/Map";
 import TileLayer from "ol/layer/Tile";
-import type { Coordinate } from "ol/coordinate";
+import { toStringHDMS, type Coordinate } from "ol/coordinate";
 import VectorLayer from "ol/layer/Vector";
 import View from "ol/View";
 import XYZ from "ol/source/XYZ";
+import Overlay from "ol/Overlay";
 import { register } from "ol/proj/proj4";
 
 // Proj4 import
@@ -101,6 +102,26 @@ class HomeViewControl extends Control {
   }
 }
 
+/*
+ * Retireve and store the elements that make up the popup.
+ */
+const container = document.getElementById("popup")!;
+const content = document.getElementById("popup-content")!;
+const closer = document.getElementById("popup-closer")!;
+
+/**
+ * Create an overlay to anchor the popup to the map.
+ * Autopan to that overlay so the popup is always visible on the map.
+ */
+const overlay = new Overlay({
+  element: container,
+  autoPan: {
+    animation: {
+      duration: 250,
+    },
+  },
+});
+
 // Setup Vashon Coordinates
 const vashoncoords: Coordinate = [-122.46005576724342, 47.42296763830496];
 const vashonWebMercator: Coordinate = fromLonLat(vashoncoords);
@@ -118,7 +139,17 @@ const map_view = new View({
   // constrainOnlyCenter: true,
 });
 
-// Create map layers
+/**
+ * Add a click handler to hide the popup.
+ * @return {boolean} Don't follow the href.
+ */
+closer.onclick = function () {
+  overlay.setPosition(undefined);
+  closer.blur();
+  return false;
+};
+
+// Create map base layer
 const map_layers = [
   new TileLayer({
     source: new XYZ({
@@ -135,6 +166,7 @@ const vashonMap = new Map({
     new HomeViewControl({}),
   ]),
   layers: map_layers,
+  overlays: [overlay],
   view: map_view,
 });
 
@@ -159,6 +191,28 @@ const point_style = new Style({
 // Get feature geometry from spatialite.ts
 const feature_geometry = await feature_collection;
 
+/**
+ * Add a click handler to the map to render the popup.
+ */
+vashonMap.on("singleclick", function (evt) {
+  let feature = vashonMap.forEachFeatureAtPixel(
+    evt.pixel,
+    function (feature, layer) {
+      if (layer.getClassName() == "vashonPoint") {
+        return feature;
+      }
+    }
+  );
+  if (feature) {
+    const coordinate = evt.coordinate;
+    let popupContent = "<h1>" + feature.get("name") + "</h1>";
+    content.innerHTML = popupContent;
+    overlay.setPosition(coordinate);
+  } else {
+    overlay.setPosition(undefined);
+  }
+});
+
 const setupMap = (node: HTMLDivElement) => {
   // Create map object
   vashonMap.setTarget(node.id);
@@ -176,13 +230,19 @@ const setupMap = (node: HTMLDivElement) => {
     }),
   });
 
+  const vashonPointsVectorLayer = new VectorLayer({
+    className: "vashonPoint",
+    source: vector_geoson,
+    style: point_style,
+  });
+
   // Add the layer to the map
-  vashonMap.addLayer(
-    new VectorLayer({ source: vector_geoson, style: point_style })
-  );
+  vashonMap.addLayer(vashonPointsVectorLayer);
 
   // vashonMap.getView().fit(vector_geoson.getExtent());
   checkSize();
+
+  console.log(vashonMap.getAllLayers());
 };
 
 export default setupMap;

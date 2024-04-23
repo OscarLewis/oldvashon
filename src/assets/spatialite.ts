@@ -1,6 +1,6 @@
 import SPL from "spl.js";
 
-let feature_collection = await (async () => {
+let feature_collection = (async () => {
   try {
     // Location of spatialite db
     let spatialite_db = "/oldvashon.sqlite";
