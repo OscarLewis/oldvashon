@@ -20,10 +20,13 @@ import type { Coordinate } from "ol/coordinate";
 import VectorLayer from "ol/layer/Vector";
 import View from "ol/View";
 import XYZ from "ol/source/XYZ";
-import proj4 from "proj4";
 import { register } from "ol/proj/proj4";
 
+// Proj4 import
+import proj4 from "proj4";
+
 // Define EPSG:2285 (NAD83 / Washington North (ftUS))
+// This definition comes from QGIS
 proj4.defs(
   "NAD83/Washington_North",
   "+proj=lcc +lat_0=47 +lon_0=-120.833333333333 +lat_1=48.7333333333333 +lat_2=47.5 +x_0=500000.0001016 +y_0=0 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=us-ft +no_defs"
