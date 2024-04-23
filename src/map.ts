@@ -77,7 +77,7 @@ class HomeViewControl extends Control {
     button.innerHTML =
       "<img src=" +
       houseSVG +
-      " style=\x22display: block; margin-left: auto; margin-right: auto;\x22\x22/>";
+      " style='display: block; margin-left: auto; margin-right: auto;'/>";
 
     // Create a div so we can style the button
     const element = document.createElement("div");
@@ -125,6 +125,16 @@ const overlay = new Overlay({
   },
 });
 
+/**
+ * Add a click handler to hide the popup.
+ * @return {boolean} Don't follow the href.
+ */
+closer.onclick = function () {
+  overlay.setPosition(undefined);
+  closer.blur();
+  return false;
+};
+
 // Setup Vashon Coordinates
 const vashoncoords: Coordinate = [-122.46005576724342, 47.42296763830496];
 const vashonWebMercator: Coordinate = fromLonLat(vashoncoords);
@@ -141,16 +151,6 @@ const map_view = new View({
   // ],
   // constrainOnlyCenter: true,
 });
-
-/**
- * Add a click handler to hide the popup.
- * @return {boolean} Don't follow the href.
- */
-closer.onclick = function () {
-  overlay.setPosition(undefined);
-  closer.blur();
-  return false;
-};
 
 // Create map base layer
 const map_layers = [
@@ -179,18 +179,6 @@ vashonMap.on("change:size", checkSize);
 
 const initial_zoom = vashonMap.getView().getZoom()!;
 const initial_center = vashonMap.getView().getCenter();
-
-// Set color for points on map
-const color_cherry_coke = [168, 56, 0, 100];
-
-/* Create a new point style for our dots on the map */
-const point_style = new Style({
-  image: new CircleStyle({
-    radius: 3,
-    fill: new Fill({ color: color_cherry_coke }),
-    stroke: new Stroke({ color: "#000000", width: 0.5 }),
-  }),
-});
 
 /**
  * Add a click handler to the map to render the popup.
@@ -234,6 +222,18 @@ const feature_geometry = await feature_collection;
 // Log for debug
 console.log("feature collection:");
 console.log(feature_geometry);
+
+// Set color for points on map
+const color_cherry_coke = [168, 56, 0, 100];
+
+/* Create a new point style for our dots on the map */
+const point_style = new Style({
+  image: new CircleStyle({
+    radius: 3,
+    fill: new Fill({ color: color_cherry_coke }),
+    stroke: new Stroke({ color: "#000000", width: 0.5 }),
+  }),
+});
 
 // Create a new VectorSource in GeoJSON format
 // Reproject to WebMercator

@@ -7,20 +7,20 @@
     <title>Vanishing Vashon</title>
   </head>
   <body>
+    <!-- Header -->
     <div class="flex flex-row justify-between items-baseline mt-1 mb-2">
       <div class="flex flex-row items-baseline ml-2 font-serif">
         <div class="text-2xl">Old Vashon</div>
         <div class="text-xl"><p>&nbsp;- A history mapping project</p></div>
       </div>
       <div class="mr-2">
-        <a href="/about/index.html" class="bluelinkcolor">About</a>
+        <a href="/" class="bluelinkcolor">Home</a>
       </div>
     </div>
-    <div id="map" class="h-[95.2vh]"></div>
-    <div id="popup" class="ol-popup ol-popup-min-width">
-      <a href="#" id="popup-closer" class="ol-popup-closer"></a>
-      <div id="popup-content"></div>
+    <!-- Main Body -->
+    <div class="flex w-full justify-center">
+      <div class="text-center text-2xl font-semibold">About</div>
     </div>
-    <script type="module" src="/src/main.ts"></script>
+    <script type="module" src="about.ts"></script>
   </body>
 </html>
