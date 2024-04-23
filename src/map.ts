@@ -259,8 +259,6 @@ const setupMap = (node: HTMLDivElement) => {
 
   // vashonMap.getView().fit(vector_geoson.getExtent());
   checkSize();
-
-  console.log(vashonMap.getAllLayers());
 };
 
 export default setupMap;
