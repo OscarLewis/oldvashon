@@ -152,7 +152,7 @@ const point_style = new Style({
   image: new CircleStyle({
     radius: 3,
     fill: new Fill({ color: color_cherry_coke }),
-    stroke: new Stroke({ color: color_cherry_coke, width: 1 }),
+    stroke: new Stroke({ color: "#000000", width: 0.5 }),
   }),
 });
 
