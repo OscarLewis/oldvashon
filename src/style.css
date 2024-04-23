@@ -1,19 +1,18 @@
 @import "ol/ol.css";
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 .bluelinkcolor {
   @apply underline 
-  text-blue-600 
-  hover:text-blue-800 
-  /* visited:text-purple-600 */;
+    text-blue-600 
+    hover:text-blue-800 
+    /* visited:text-purple-600 */;
 }
 
 div.markdownlinkcolor > p > a {
   @apply underline 
-  text-blue-600 
-  hover:text-blue-800 
-  /* visited:text-purple-600 */;
+    text-blue-600 
+    hover:text-blue-800 
+    /* visited:text-purple-600 */;
 }

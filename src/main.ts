@@ -1,8 +1,5 @@
-import "./app.css";
-import App from "./App.svelte";
+import "./style.css";
+import setupMap from "./map";
 
-const app = new App({
-  target: document.getElementById("app")!,
-});
-
-export default app;
+let map_div = <HTMLImageElement>document.getElementById("map");
+setupMap(map_div);

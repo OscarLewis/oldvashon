@@ -1,5 +1,5 @@
 // Local imports
-import "../assets/map.css";
+import "./map.css";
 import houseSVG from "./house.svg";
 import feature_collection from "./spatialite";
 
