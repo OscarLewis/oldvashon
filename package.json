@@ -12,6 +12,7 @@
   "devDependencies": {
     "@sveltejs/vite-plugin-svelte": "^3.0.2",
     "@tsconfig/svelte": "^5.0.2",
+    "@types/proj4": "^2",
     "@types/sqlite3": "^3.1.11",
     "autoprefixer": "^10.4.19",
     "postcss": "^8.4.38",
@@ -26,6 +27,7 @@
   "dependencies": {
     "marked": "^12.0.2",
     "ol": "^9.1.0",
+    "proj4": "^2.11.0",
     "spl.js": "^0.1.1"
   }
 }
