@@ -11,3 +11,4 @@
 {"rule":"UPPERCASE_SENTENCE_START","sentence":"^\\Qsummary: not currently used, could be similar to description.\\E$"}
 {"rule":"MORFOLOGIK_RULE_EN_US","sentence":"^\\QThe old_vashon.gqz QGIS Project file contains a basemap from the National Agriculture Imagery Program (NAIP) and a point feature layer named \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q which is read from the oldvashon.sqlite file in this directory.\\E$"}
 {"rule":"MORFOLOGIK_RULE_EN_US","sentence":"^\\QPlease edit features using the local sqlite file and then once your changes are ready, copy the local file into the projects \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q directory, replacing the older sqlite file.\\E$"}
+{"rule":"COPYRIGHT","sentence":"^\\QCopyright (c) 2024 Oscar Lewis\\E$"}
