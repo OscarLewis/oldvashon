@@ -12,6 +12,7 @@ Each feature contains the following attributes:
 - long_name: A different, possibly more official name for the feature (example: Harbor Merchantile instead of Burton Store).
 - description: A brief description of the feature.
 - history: A longer full history of the feature, this should be written in markdown and copied from a file in the `markdown_files` directory.
+- citations: Additional citations for feature history.
 - start_year: A date (when a business opened, when some art got installed, etc.)
 - end_year: A date (when a business closed, etc.)
 - img_url: a link to an image of the feature (can be local like the streetview images in the `public` dir, or somewhere else on the internet).
