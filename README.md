@@ -11,3 +11,6 @@ Built by [Oscar Lewis](https://oscarlewis.dev/).
 Run `yarn install` to install dependencies before runnning `yarn build` to build the static website in the dist folder.
 
 Running `yarn dev` will start a local development server.
+ 
+## Contributing
+If you want to contribute, feel free to fork this repo and submit a PR. I recommend using [QGIS](https://www.qgis.org/en/site/) to edit the files found in the qgis directory, where there is also more information avaliable about the structure of the project. 
