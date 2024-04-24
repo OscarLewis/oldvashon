@@ -5,6 +5,5 @@
   },
   "typescript.tsdk": ".yarn/sdks/typescript/lib",
   "typescript.enablePromptUseWorkspaceTsdk": true,
-  "cSpell.language": "en",
-  "cSpell.words": ["Scooby"]
+  "ltex.enabled": ["latex", "markdown", "restructuredtext"]
 }
