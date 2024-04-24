@@ -65,8 +65,8 @@ export function popupContents(feature: FeatureLike): string {
     feature.get("citations") != undefined
   ) {
     const citations_div =
-      "<hr class='blackline mt-2'>" +
-      "<div class='markdown text-sm markdownlinkcolor'>" +
+      "<hr class='blackline mt-2 mb-1'>" +
+      "<div class='markdown text-xs markdownlinkcolor'>" +
       marked(feature.get("citations")) +
       "</div>";
     popupContent += citations_div;

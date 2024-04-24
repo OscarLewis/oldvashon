@@ -7,7 +7,7 @@ export default {
     "./about/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: { fontSize: { "2xs": ["0.6rem", "0.8rem"] } },
   },
   plugins: [],
 };
