@@ -35,6 +35,7 @@ let feature_collection = (async () => {
               history: response.history,
               sumarry: response.sumarry,
               img_url: response.img_url,
+              img_attribution: response.img_attribution,
             },
           })),
         };

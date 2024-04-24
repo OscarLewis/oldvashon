@@ -31,10 +31,20 @@ export function popupContents(feature: FeatureLike): string {
   if (feature.get("img_url") != null && feature.get("img_url") != undefined) {
     popupDiv?.classList.remove("ol-popup-min-width");
     popupDiv?.classList.add("min-w-[400px]");
-    popupContent += "<img class='h-[200px] my-2 mx-auto' src='";
+    popupContent += "<img class='h-[200px] mt-2 mx-auto' src='";
     popupContent += feature.get("img_url");
     popupContent += "'";
     popupContent += " >";
+
+    if (
+      feature.get("img_attribution") != null &&
+      feature.get("img_attribution") != undefined
+    ) {
+      popupContent +=
+        "<div class='flex'><p class='text-xs mx-auto align-top mb-1'>Image: " +
+        feature.get("img_attribution") +
+        "</p></div>";
+    }
   } else {
     if (!popupDiv?.classList.contains("ol-popup-min-width")) {
       popupDiv?.classList.add("ol-popup-min-width");
