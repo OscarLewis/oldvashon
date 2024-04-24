@@ -21,3 +21,8 @@ div.markdownlinkcolor > p > a {
     hover:text-blue-800 
     /* visited:text-purple-600 */;
 }
+
+hr.blackline {
+  border: 1px solid black;
+  border-radius: 7px 7px 7px 7px;
+}
