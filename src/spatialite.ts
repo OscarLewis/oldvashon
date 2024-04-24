@@ -31,11 +31,17 @@ let feature_collection = (async () => {
             geometry: response.geom,
             properties: {
               name: response.name,
+              long_name: response.long_name,
               author: response.author,
               history: response.history,
               sumarry: response.sumarry,
+              description: response.description,
               img_url: response.img_url,
               img_attribution: response.img_attribution,
+              citations: response.citations,
+              last_edited: response.last_edited,
+              start_year: response.start_year,
+              end_year: response.end_year,
             },
           })),
         };
