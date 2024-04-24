@@ -16,6 +16,7 @@ export default defineConfig({
       input: {
         main: resolve(__dirname, "index.html"),
         about: resolve(__dirname, "about/index.html"),
+        img_switch: resolve(__dirname, "img_switch/index.html"),
       },
     },
   },
