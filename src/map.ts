@@ -3,6 +3,9 @@ import "./map.css";
 import houseSVG from "./house.svg";
 import feature_collection from "./spatialite";
 
+// Popup content
+import { popupContents } from "./popupcontent";
+
 // OpenLayers imports
 import {
   FullScreen,
@@ -25,9 +28,6 @@ import { register } from "ol/proj/proj4";
 
 // Proj4 import
 import proj4 from "proj4";
-
-// Popup content
-import { popupContents } from "./popupcontent";
 
 // Define EPSG:2285 (NAD83 / Washington North (ftUS))
 // This definition comes from QGIS

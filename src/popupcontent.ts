@@ -19,10 +19,11 @@ export function popupContents(feature: FeatureLike): string {
   let popupContent = "<div>";
   // Name
   if (feature.get("name") != null && feature.get("name") != undefined) {
-    popupContent +=
+    const name_div =
       "<div class='flex'><p class='text-lg mx-auto'>" +
       feature.get("name") +
       "</p></div>";
+    popupContent += name_div;
   }
 
   //   popupContent += "<div class='flex flex-row'>";
@@ -52,10 +53,23 @@ export function popupContents(feature: FeatureLike): string {
   }
 
   // History
-  if (feature.get("history") != null) {
+  if (feature.get("history") != null && feature.get("history") != undefined) {
     popupContent += "<div class='markdown text-sm markdownlinkcolor'>";
     popupContent += marked(feature.get("history"));
     popupContent += "</div>";
+  }
+
+  // Citations
+  if (
+    feature.get("citations") != null &&
+    feature.get("citations") != undefined
+  ) {
+    const citations_div =
+      "<hr class='blackline mt-2'>" +
+      "<div class='markdown text-sm markdownlinkcolor'>" +
+      marked(feature.get("citations")) +
+      "</div>";
+    popupContent += citations_div;
   }
 
   //   popupContent += "</div>";
