@@ -1,5 +1,9 @@
 {
   "recommendations": [
-    "arcanis.vscode-zipfs"
+    "arcanis.vscode-zipfs",
+    "valentjn.vscode-ltex",
+    "esbenp.prettier-vscode",
+    "bradlc.vscode-tailwindcss",
+    "gamunu.vscode-yarn"
   ]
 }
