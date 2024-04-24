@@ -1,0 +1,13 @@
+{"rule":"MORFOLOGIK_RULE_EN_US","sentence":"^\\Qimg_url: a link to an image of the feature (can be local like the \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q images in the \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q dir, or somewhere else on the internet).\\E$"}
+{"rule":"UPPERCASE_SENTENCE_START","sentence":"^\\Qname: The name of the feature.\\E$"}
+{"rule":"UPPERCASE_SENTENCE_START","sentence":"^\\Qlong_name: A different, possibly more official name for the feature (example: Harbor Mercantile instead of Burton Store).\\E$"}
+{"rule":"UPPERCASE_SENTENCE_START","sentence":"^\\Qdescription: A brief description of the feature.\\E$"}
+{"rule":"UPPERCASE_SENTENCE_START","sentence":"^\\Qhistory: A longer full history of the feature, this should be written in Markdown and copied from a file in the \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q directory.\\E$"}
+{"rule":"UPPERCASE_SENTENCE_START","sentence":"^\\Qcitations: Additional citations for feature history.\\E$"}
+{"rule":"UPPERCASE_SENTENCE_START","sentence":"^\\Qstart_year: A date (when a business opened, when some art got installed, etc.)\\E$"}
+{"rule":"UPPERCASE_SENTENCE_START","sentence":"^\\Qimg_url: a link to an image of the feature (can be local like the \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q images in the \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q dir, or somewhere else on the internet).\\E$"}
+{"rule":"UPPERCASE_SENTENCE_START","sentence":"^\\Qimg_attribution: Attribution string for the image.\\E$"}
+{"rule":"UPPERCASE_SENTENCE_START","sentence":"^\\Qauthor: Who wrote the feature.\\E$"}
+{"rule":"UPPERCASE_SENTENCE_START","sentence":"^\\Qsummary: not currently used, could be similar to description.\\E$"}
+{"rule":"MORFOLOGIK_RULE_EN_US","sentence":"^\\QThe old_vashon.gqz QGIS Project file contains a basemap from the National Agriculture Imagery Program (NAIP) and a point feature layer named \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q which is read from the oldvashon.sqlite file in this directory.\\E$"}
+{"rule":"MORFOLOGIK_RULE_EN_US","sentence":"^\\QPlease edit features using the local sqlite file and then once your changes are ready, copy the local file into the projects \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q directory, replacing the older sqlite file.\\E$"}
