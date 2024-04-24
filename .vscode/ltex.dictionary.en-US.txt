@@ -6,3 +6,6 @@ vashon
 gqz
 QGIS
 NAIP
+OpenLayers
+SpatiaLite
+Vite
