@@ -2,7 +2,11 @@ import "../src/style.css";
 import { get_images_table } from "../src/images";
 import { createImageSwitcher } from "../src/imageswitch";
 
-let images = await get_images_table();
+// Get movie magic images from db
+let images = await get_images_table(1);
+
+console.log("movie magic images from images table in sqlite file:");
+console.log(images);
 
 let image_urls: string[] = [];
 

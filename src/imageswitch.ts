@@ -69,6 +69,8 @@ export function createImageSwitcher(
       prev_image_btn.classList.add("invisible");
       drawImage(img_urls, 0, image_element_id);
     }
+  } else {
+    console.log("Missing next and previous button elements!");
   }
 
   // Set SRC of image_element to image at the past-in index of the past-in array
