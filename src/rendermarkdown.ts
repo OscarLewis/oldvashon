@@ -7,6 +7,8 @@ renderer.link = function (href, title, text) {
   return link.replace("<a", "<a target='_blank' ");
 };
 
+// https://www.npmjs.com/package/marked-custom-heading-id
+
 // Set new renderer options
 marked.setOptions({
   renderer: renderer,
