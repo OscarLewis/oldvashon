@@ -55,6 +55,7 @@ export function createImageSwitcher(
     }
   }
 
+  // Set SRC of image_element to current image
   function drawImage(
     image_array: string[],
     image_index: number,
