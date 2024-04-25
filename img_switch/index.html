@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/yurt.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vanishing Vashon</title>
+  </head>
+  <body>
+    <!-- Header -->
+    <div class="flex flex-row justify-between items-baseline mt-1 mb-2">
+      <div class="flex flex-row items-baseline ml-2 font-serif">
+        <a href="/"><div class="text-2xl">Vanishing Vashon</div></a>
+        <div class="text-xl"><p>&nbsp;- A history mapping project</p></div>
+      </div>
+      <div class="mr-2">
+        <a href="/" class="bluelink_no_underline">Home</a>
+      </div>
+    </div>
+    <!-- Main Body -->
+    <div class="flex w-screen justify-center">
+      <div class="text-center text-2xl font-semibold">Image Switch</div>
+    </div>
+    <!-- try to stop items from shifting up on smaller image -->
+    <div class="h-screen">
+      <div class="h-1/2 relative">
+        <div class="flex justify-center">
+          <div class="absolute bottom-0 mx-auto">
+            <div class="flex flex-col items-center">
+              <div class="mt-4">
+                <div id="image-div"></div>
+              </div>
+              <div>
+                <div class="space-x-2 mt-2">
+                  <button id="previous-image" class="image-active">
+                    Previous</button
+                  ><button id="next-image" class="image-active">Next</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script type="module" src="imageswitch.ts"></script>
+</html>

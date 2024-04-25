@@ -23,7 +23,6 @@ let feature_collection = (async () => {
       .exec(query)
       .get.objs.then((response: any[]) => {
         // Create GeoJSON style FeatureCollection
-        console.log(response);
         const collection = {
           type: "FeatureCollection",
           features: response.map((response) => ({
