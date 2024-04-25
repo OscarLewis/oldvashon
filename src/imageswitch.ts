@@ -62,8 +62,7 @@ export function createImageSwitcher(
   ) {
     let img_div = document.getElementById(image_div);
     if (img_div != null && img_div != undefined) {
-      img_div.innerHTML =
-        "<img src=" + image_array[image_index] + " width='500' height='380' />";
+      img_div.innerHTML = "<img src=" + image_array[image_index] + " />";
     }
   }
 }
