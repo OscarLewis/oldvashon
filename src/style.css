@@ -28,10 +28,10 @@ hr.blackline {
 }
 
 button.image-active {
-  @apply bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 rounded text-xs;
+  @apply bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 rounded text-xs text-center;
 }
 
 button.image-deactive {
-  @apply bg-gray-400 text-white font-bold py-1 px-2 rounded text-xs;
+  @apply bg-gray-400 text-white font-bold py-1 px-2 rounded text-xs text-center;
   pointer-events: none;
 }
