@@ -18,4 +18,9 @@ images.forEach(
   }
 );
 
-createImageSwitcher(image_urls, "next-image", "previous-image", "image-div");
+createImageSwitcher(
+  image_urls,
+  "next-image",
+  "previous-image",
+  "image-element"
+);

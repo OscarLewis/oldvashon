@@ -2,13 +2,13 @@ export function createImageSwitcher(
   img_urls: string[],
   next_button_id: string,
   previous_button_id: string,
-  image_div_id: string
+  image_element_id: string
 ) {
   if (img_urls.length > 0) {
     let images_index = 0;
     let images_length = img_urls.length;
 
-    drawImage(img_urls, images_index, image_div_id);
+    drawImage(img_urls, images_index, image_element_id);
     let next_image_btn = document.getElementById(next_button_id);
     let prev_image_btn = document.getElementById(previous_button_id);
 
@@ -23,7 +23,7 @@ export function createImageSwitcher(
       }
       prev_image_btn.addEventListener("click", function (_e) {
         if (images_index > 0) {
-          drawImage(img_urls, images_index - 1, image_div_id);
+          drawImage(img_urls, images_index - 1, image_element_id);
           images_index -= 1;
           if (
             images_index <= images_length - 1 &&
@@ -39,7 +39,7 @@ export function createImageSwitcher(
 
       next_image_btn.addEventListener("click", function (_e) {
         if (images_index < images_length - 1) {
-          drawImage(img_urls, images_index + 1, image_div_id);
+          drawImage(img_urls, images_index + 1, image_element_id);
           images_index += 1;
         }
         if (images_index == images_length - 1) {
@@ -58,11 +58,11 @@ export function createImageSwitcher(
   function drawImage(
     image_array: string[],
     image_index: number,
-    image_div: string
+    image_element: string
   ) {
-    let img_div = document.getElementById(image_div);
+    let img_div = <HTMLImageElement>document.getElementById(image_element);
     if (img_div != null && img_div != undefined) {
-      img_div.innerHTML = "<img src=" + image_array[image_index] + " />";
+      img_div.src = image_array[image_index];
     }
   }
 }

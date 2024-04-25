@@ -25,10 +25,10 @@
     <div class="h-screen">
       <div class="h-1/2 relative">
         <div class="flex justify-center">
-          <div class="absolute bottom-0 mx-auto">
-            <div class="flex flex-col items-center">
-              <div class="mt-4">
-                <div id="image-div"></div>
+          <div class="absolute bottom-0">
+            <div class="flex flex-col justify-center items-center">
+              <div id="image-div" class="flex justify-center">
+                <img id="image-element" class="max-w-[100%] h-[400px]" />
               </div>
               <div>
                 <div class="space-x-2 mt-1">
@@ -43,6 +43,5 @@
       </div>
     </div>
   </body>
-  <script type="module" src="demo_image_switcher.ts"></script>
   <script type="module" src="img_switch_page.ts"></script>
 </html>
