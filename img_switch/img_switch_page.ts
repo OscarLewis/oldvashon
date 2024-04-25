@@ -23,8 +23,9 @@ images.forEach(
 );
 
 createImageSwitcher(
-  image_urls,
+  images,
   "next-image",
   "previous-image",
-  "image-element"
+  "image-element",
+  "image-attribution"
 );
