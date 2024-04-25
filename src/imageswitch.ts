@@ -4,24 +4,24 @@ export function createImageSwitcher(
   previous_button_id: string,
   image_element_id: string
 ) {
-  if (img_urls.length > 0) {
-    let images_index = 0;
-    let images_length = img_urls.length;
+  // get elements for buttons
+  let next_image_btn = document.getElementById(next_button_id);
+  let prev_image_btn = document.getElementById(previous_button_id);
+  if (
+    prev_image_btn != null &&
+    prev_image_btn != undefined &&
+    next_image_btn != null &&
+    next_image_btn != undefined
+  ) {
+    if (img_urls.length > 1) {
+      let images_index = 0;
+      let images_length = img_urls.length;
 
-    // Draw the initial image
-    drawImage(img_urls, images_index, image_element_id);
+      // Draw the initial image
+      drawImage(img_urls, images_index, image_element_id);
 
-    // get elements for buttons
-    let next_image_btn = document.getElementById(next_button_id);
-    let prev_image_btn = document.getElementById(previous_button_id);
+      // check if everything is created
 
-    // check if everything is created
-    if (
-      prev_image_btn != null &&
-      prev_image_btn != undefined &&
-      next_image_btn != null &&
-      next_image_btn != undefined
-    ) {
       // If current image is at beggining of the array, disable the 'previous' button
       if (images_index == 0) {
         prev_image_btn.classList.add("image-deactive");
@@ -64,6 +64,10 @@ export function createImageSwitcher(
           prev_image_btn.classList.remove("image-deactive");
         }
       });
+    } else {
+      next_image_btn.classList.add("invisible");
+      prev_image_btn.classList.add("invisible");
+      drawImage(img_urls, 0, image_element_id);
     }
   }
 
