@@ -1,6 +1,7 @@
 import { marked } from "marked";
 import type { FeatureLike } from "ol/Feature";
 import { get_images_table } from "./images";
+import { createImageSwitcher } from "./imageswitch";
 
 // Make all links target "_blank"
 let renderer = new marked.Renderer();
@@ -59,6 +60,20 @@ export async function popupContents(feature: FeatureLike): Promise<string> {
   if (images_db_array.length > 0) {
     popupDiv?.classList.remove("ol-popup-min-width");
     popupDiv?.classList.add("min-w-[400px]");
+    let image_div = "<div id='image-div' class='flex justify-center'>";
+    let img_element =
+      "<img id='image-element' class='max-w-[100%] h-[400px]' />";
+    image_div += img_element + "</div>";
+    let button_div =
+      "<div class='flex justify-center items-center space-x-2 mt-1'><button id='previous-image' class='image-active'>Previous</button><button id='next-image' class='image-active'>Next</button></div>";
+    popupContent += image_div + button_div;
+    createImageSwitcher(
+      images_db_array,
+      "next-image",
+      "previous-image",
+      "image-element",
+      "image-attribution"
+    );
     //   popupContent += "<img class='image-element mt-2 mx-auto' >";
     //   popupContent += "<div class='h-1/2 relative'><div class='flex justify-center'><div class='absolute bottom-0 top-5'><div>
     //         <div class='flex flex-col justify-center items-center'>
