@@ -5,9 +5,6 @@ import { createImageSwitcher } from "../src/imageswitch";
 // Get movie magic images from db
 let images = await get_images_table(1);
 
-console.log("movie magic images from images table in sqlite file:");
-console.log(images);
-
 let image_urls: string[] = [];
 
 images.forEach(
@@ -27,7 +24,8 @@ createImageSwitcher(
   "next-image",
   "previous-image",
   "image-element",
-  "image-attribution"
+  "image-attribution",
+  "image-description"
 );
 
 let images_that_do_not_exist = await get_images_table(2);
