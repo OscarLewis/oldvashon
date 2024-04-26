@@ -27,7 +27,3 @@ createImageSwitcher(
   "image-attribution",
   "image-description"
 );
-
-let images_that_do_not_exist = await get_images_table(2);
-
-console.log(images_that_do_not_exist.length == 0);
