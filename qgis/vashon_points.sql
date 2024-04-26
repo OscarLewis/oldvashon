@@ -1,3 +1,4 @@
+-- Create vashon_points table
 CREATE TABLE
     vashon_points (
         feature_id INTEGER NOT NULL PRIMARY KEY,
