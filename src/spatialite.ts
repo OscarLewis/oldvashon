@@ -29,6 +29,7 @@ let feature_collection = (async () => {
             type: "Feature",
             geometry: response.geom,
             properties: {
+              feature_id: response.pk,
               name: response.name,
               long_name: response.long_name,
               author: response.author,

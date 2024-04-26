@@ -1,5 +1,6 @@
 import { marked } from "marked";
 import type { FeatureLike } from "ol/Feature";
+import { get_images_table } from "./images";
 
 // Make all links target "_blank"
 let renderer = new marked.Renderer();
@@ -14,7 +15,7 @@ marked.setOptions({
 });
 
 // Function that creates the contents for a popup on the map - returns a string
-export function popupContents(feature: FeatureLike): string {
+export async function popupContents(feature: FeatureLike): Promise<string> {
   let popupDiv = document.querySelector(".ol-popup");
   let popupContent = "<div>";
   // Name
@@ -28,28 +29,56 @@ export function popupContents(feature: FeatureLike): string {
 
   //   popupContent += "<div class='flex flex-row'>";
 
-  // Image
-  if (feature.get("img_url") != null && feature.get("img_url") != undefined) {
+  // // Image
+  // if (feature.get("img_url") != null && feature.get("img_url") != undefined) {
+  //   popupDiv?.classList.remove("ol-popup-min-width");
+  //   popupDiv?.classList.add("min-w-[400px]");
+  //   popupContent += "<img class='h-[200px] mt-2 mx-auto' src='";
+  //   popupContent += feature.get("img_url");
+  //   popupContent += "'";
+  //   popupContent += " >";
+
+  //   if (
+  //     feature.get("img_attribution") != null &&
+  //     feature.get("img_attribution") != undefined
+  //   ) {
+  //     popupContent +=
+  //       "<div class='flex'><p class='text-xs mx-auto align-top mb-1'>Image: " +
+  //       feature.get("img_attribution") +
+  //       "</p></div>";
+  //   }
+  // } else {
+  //   if (!popupDiv?.classList.contains("ol-popup-min-width")) {
+  //     popupDiv?.classList.add("ol-popup-min-width");
+  //   }
+  // }
+
+  // New Image
+  const images_db_array = await get_images_table(feature.get("feature_id"));
+  console.log(images_db_array);
+  if (images_db_array.length > 0) {
     popupDiv?.classList.remove("ol-popup-min-width");
     popupDiv?.classList.add("min-w-[400px]");
-    popupContent += "<img class='h-[200px] mt-2 mx-auto' src='";
-    popupContent += feature.get("img_url");
-    popupContent += "'";
-    popupContent += " >";
-
-    if (
-      feature.get("img_attribution") != null &&
-      feature.get("img_attribution") != undefined
-    ) {
-      popupContent +=
-        "<div class='flex'><p class='text-xs mx-auto align-top mb-1'>Image: " +
-        feature.get("img_attribution") +
-        "</p></div>";
-    }
-  } else {
-    if (!popupDiv?.classList.contains("ol-popup-min-width")) {
-      popupDiv?.classList.add("ol-popup-min-width");
-    }
+    //   popupContent += "<img class='image-element mt-2 mx-auto' >";
+    //   popupContent += "<div class='h-1/2 relative'><div class='flex justify-center'><div class='absolute bottom-0 top-5'><div>
+    //         <div class='flex flex-col justify-center items-center'>
+    //           <div id="image-div" class="flex justify-center">
+    //             <img id="image-element" class="max-w-[100%] h-[400px]" />
+    //           </div>
+    //         </div>
+    //         <div
+    //           id="image-attribution"
+    //           class="markdownlinkcolor text-2xs"
+    //         ></div>
+    //         <div class="flex justify-center items-center space-x-2 mt-1">
+    //           <button id="previous-image" class="image-active">
+    //             Previous</button
+    //           ><button id="next-image" class="image-active">Next</button>
+    //         </div>
+    //       </div>
+    //     </div>
+    //   </div>
+    // </div>"
   }
 
   // History

@@ -183,7 +183,7 @@ const initial_center = vashonMap.getView().getCenter();
 /**
  * Add a click handler to the map to render the popup.
  */
-vashonMap.on("singleclick", function (evt) {
+vashonMap.on("singleclick", async function (evt) {
   let feature = vashonMap.forEachFeatureAtPixel(
     evt.pixel,
     function (feature, layer) {
@@ -195,7 +195,7 @@ vashonMap.on("singleclick", function (evt) {
   if (feature) {
     const coordinate = evt.coordinate;
     let popupContent = popupContents(feature);
-    content.innerHTML = popupContent;
+    content.innerHTML = await popupContent;
     overlay.setPosition(coordinate);
     // content.classList.toggle("popup-active");
   } else {
