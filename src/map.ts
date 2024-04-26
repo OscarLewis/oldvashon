@@ -5,6 +5,7 @@ import feature_collection from "./spatialite";
 
 // Popup content
 import { popupContents } from "./popupcontent";
+import { createImageSwitcher } from "./imageswitch";
 
 // OpenLayers imports
 import {
@@ -28,7 +29,6 @@ import { register } from "ol/proj/proj4";
 
 // Proj4 import
 import proj4 from "proj4";
-import { createImageSwitcher } from "./imageswitch";
 
 // Define EPSG:2285 (NAD83 / Washington North (ftUS))
 // This definition comes from QGIS
@@ -178,7 +178,8 @@ const vashonMap = new Map({
 // On size change run the checkSize function
 vashonMap.on("change:size", checkSize);
 
-const initial_zoom = vashonMap.getView().getZoom()!;
+// Set initial positions that the home button will bring the map back too
+const initial_zoom = vashonMap.getView().getZoom();
 const initial_center = vashonMap.getView().getCenter();
 
 /**
