@@ -1,10 +1,11 @@
+-- Create images table
 CREATE TABLE
   images (
-    imageid INTEGER NOT NULL PRIMARY KEY,
-    -- These feature keys match the vashon_points table, if I make them actual foreign keys than qgis bugs out
-    feature_id INTEGER,
-    feature_name TEXT,
+    image_id INTEGER NOT NULL PRIMARY KEY,
+    feature_id INTEGER NOT NULL,
     image_url TEXT,
     image_descrip TEXT,
-    image_attribution TEXT
+    image_attribution TEXT,
+    image_date DATE,
+    FOREIGN KEY (feature_id) REFERENCES vashon_points (feature_id)
   );
