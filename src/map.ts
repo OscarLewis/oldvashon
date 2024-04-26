@@ -28,6 +28,7 @@ import { register } from "ol/proj/proj4";
 
 // Proj4 import
 import proj4 from "proj4";
+import { createImageSwitcher } from "./imageswitch";
 
 // Define EPSG:2285 (NAD83 / Washington North (ftUS))
 // This definition comes from QGIS
@@ -194,8 +195,16 @@ vashonMap.on("singleclick", async function (evt) {
   );
   if (feature) {
     const coordinate = evt.coordinate;
-    let popupContent = popupContents(feature);
-    content.innerHTML = await popupContent;
+    let [popupContent, images_db_array] = await popupContents(feature);
+    content.innerHTML = popupContent;
+    createImageSwitcher(
+      images_db_array,
+      "next-image",
+      "previous-image",
+      "image-element",
+      "image-attribution",
+      "image-description"
+    );
     overlay.setPosition(coordinate);
     // content.classList.toggle("popup-active");
   } else {

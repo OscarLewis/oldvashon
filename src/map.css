@@ -65,3 +65,9 @@
 .map:fullscreen {
   height: 100%;
 }
+
+.popup-image {
+  max-height: 360px; /* This is smaller than the height set in the img div but helps with vertical photos */
+  min-width: 200px !important;
+  max-width: 100% !important;
+}
