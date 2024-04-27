@@ -72,7 +72,7 @@ export async function popupContents(
       "<div id='image-attribution' class='markdownlinkcolor text-2xs text-right'></div>" +
       "</div>";
     let button_div =
-      "<div class='flex justify-center items-center space-x-2 my-1'>" +
+      "<div class='flex justify-center items-center space-x-2 my-1' onselectstart='return false'>" +
       "<button id='previous-image' class='image-active'>Previous</button>" +
       "<button id='next-image' class='image-active'>Next</button>" +
       "</div>";
