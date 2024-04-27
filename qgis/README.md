@@ -30,3 +30,5 @@ Columns in `images`:
 - image_attribution: Attribution for the image (in Markdown)
 
 If you need to add the basemap to your QGIS install, add a new XYZ connection with the standard tile resolution (256x256) using the following URL: https://gis.apfo.usda.gov/arcgis/rest/services/NAIP/USDA_CONUS_PRIME/ImageServer/tile/{z}/{y}/{x}
+
+The two SQL files in this directory show what the schema of the database is (as Spatialite's ".schema" command seems a little broken).

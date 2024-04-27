@@ -9,3 +9,4 @@ NAIP
 OpenLayers
 SpatiaLite
 Vite
+Spatialite
