@@ -57,7 +57,6 @@ export async function popupContents(
 
   // New Image
   const images_db_array = await get_images_table(feature.get("feature_id"));
-  console.log(images_db_array);
   if (images_db_array.length > 0 && popupDiv != null && popupDiv != undefined) {
     popupDiv.classList.remove("ol-popup-min-width");
     popupDiv.classList.add("min-w-[400px]");
