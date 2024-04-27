@@ -15,9 +15,18 @@ Each feature contains the following attributes:
 - citations: Additional citations for feature history.
 - start_year: A date (when a business opened, when some art got installed, etc.)
 - end_year: A date (when a business closed, etc.)
-- img_url: a link to an image of the feature (can be local like the `streetview` images in the `public` dir, or somewhere else on the internet).
-- img_attribution: Attribution string for the image.
 - author: Who wrote the feature.
 - summary: not currently used, could be similar to description.
+
+All image information is stored in the `images` table. This is so multiple images can be stored for each feature.
+The "feature_id" column in `images` is a foreign key to the "pk" column in `vashon_points`.
+
+Columns in `images`:
+
+- imageid: primary key
+- image_url: URL to image location either local (served from website root) or external
+- image_descrip: brief description of the image
+- feature_id: Foreign key to link to what feature in `vashon_points` the image is related to
+- image_attribution: Attribution for the image (in Markdown)
 
 If you need to add the basemap to your QGIS install, add a new XYZ connection with the standard tile resolution (256x256) using the following URL: https://gis.apfo.usda.gov/arcgis/rest/services/NAIP/USDA_CONUS_PRIME/ImageServer/tile/{z}/{y}/{x}

@@ -3,6 +3,7 @@
     "arcanis.vscode-zipfs",
     "valentjn.vscode-ltex",
     "esbenp.prettier-vscode",
+    "inferrinizzard.prettier-sql-vscode",
     "bradlc.vscode-tailwindcss",
     "gamunu.vscode-yarn"
   ]

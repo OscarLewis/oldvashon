@@ -2,35 +2,35 @@ import SPL from "spl.js";
 
 let query = "select * from vashon_points;";
 
+// Location of spatialite db
+let spatialite_db = "/oldvashon.sqlite";
+
+// make a new spl object
+let spl = await SPL().then((spl: any) => spl);
+
+// fetch the data
+let data = await fetch(spatialite_db).then((response) =>
+  response.arrayBuffer()
+);
+
+// create a db from the data
+export let db = await spl.db(data);
+
 let feature_collection = (async () => {
   try {
-    // Location of spatialite db
-    let spatialite_db = "/oldvashon.sqlite";
-
-    // make a new spl object
-    let spl = await SPL().then((spl: any) => spl);
-
-    // fetch the data
-    let data = await fetch(spatialite_db).then((response) =>
-      response.arrayBuffer()
-    );
-
-    // create a db from the data
-    let db = await spl.db(data);
-
     // Get the features from the database
     let feature_collection = await db
       .exec(query)
       .get.objs.then((response: any[]) => {
         // Create GeoJSON style FeatureCollection
-        console.log(response);
         const collection = {
           type: "FeatureCollection",
           features: response.map((response) => ({
             type: "Feature",
             geometry: response.geom,
             properties: {
-              name: response.name,
+              feature_id: response.feature_id,
+              name: response.feature_name,
               long_name: response.long_name,
               author: response.author,
               history: response.history,

@@ -5,6 +5,7 @@ import feature_collection from "./spatialite";
 
 // Popup content
 import { popupContents } from "./popupcontent";
+import { createImageSwitcher } from "./imageswitch";
 
 // OpenLayers imports
 import {
@@ -177,13 +178,14 @@ const vashonMap = new Map({
 // On size change run the checkSize function
 vashonMap.on("change:size", checkSize);
 
-const initial_zoom = vashonMap.getView().getZoom()!;
+// Set initial positions that the home button will bring the map back too
+const initial_zoom = vashonMap.getView().getZoom();
 const initial_center = vashonMap.getView().getCenter();
 
 /**
  * Add a click handler to the map to render the popup.
  */
-vashonMap.on("singleclick", function (evt) {
+vashonMap.on("singleclick", async function (evt) {
   let feature = vashonMap.forEachFeatureAtPixel(
     evt.pixel,
     function (feature, layer) {
@@ -194,8 +196,16 @@ vashonMap.on("singleclick", function (evt) {
   );
   if (feature) {
     const coordinate = evt.coordinate;
-    let popupContent = popupContents(feature);
+    let [popupContent, images_db_array] = await popupContents(feature);
     content.innerHTML = popupContent;
+    createImageSwitcher(
+      images_db_array,
+      "next-image",
+      "previous-image",
+      "image-element",
+      "image-attribution",
+      "image-description"
+    );
     overlay.setPosition(coordinate);
     // content.classList.toggle("popup-active");
   } else {

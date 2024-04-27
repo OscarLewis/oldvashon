@@ -1,5 +1,6 @@
 import { marked } from "marked";
 import type { FeatureLike } from "ol/Feature";
+import { get_images_table } from "./images";
 
 // Make all links target "_blank"
 let renderer = new marked.Renderer();
@@ -14,7 +15,9 @@ marked.setOptions({
 });
 
 // Function that creates the contents for a popup on the map - returns a string
-export function popupContents(feature: FeatureLike): string {
+export async function popupContents(
+  feature: FeatureLike
+): Promise<[string, any[]]> {
   let popupDiv = document.querySelector(".ol-popup");
   let popupContent = "<div>";
   // Name
@@ -28,24 +31,52 @@ export function popupContents(feature: FeatureLike): string {
 
   //   popupContent += "<div class='flex flex-row'>";
 
-  // Image
-  if (feature.get("img_url") != null && feature.get("img_url") != undefined) {
-    popupDiv?.classList.remove("ol-popup-min-width");
-    popupDiv?.classList.add("min-w-[400px]");
-    popupContent += "<img class='h-[200px] mt-2 mx-auto' src='";
-    popupContent += feature.get("img_url");
-    popupContent += "'";
-    popupContent += " >";
+  // // Image
+  // if (feature.get("img_url") != null && feature.get("img_url") != undefined) {
+  //   popupDiv?.classList.remove("ol-popup-min-width");
+  //   popupDiv?.classList.add("min-w-[400px]");
+  //   popupContent += "<img class='h-[200px] mt-2 mx-auto' src='";
+  //   popupContent += feature.get("img_url");
+  //   popupContent += "'";
+  //   popupContent += " >";
 
-    if (
-      feature.get("img_attribution") != null &&
-      feature.get("img_attribution") != undefined
-    ) {
-      popupContent +=
-        "<div class='flex'><p class='text-xs mx-auto align-top mb-1'>Image: " +
-        feature.get("img_attribution") +
-        "</p></div>";
-    }
+  //   if (
+  //     feature.get("img_attribution") != null &&
+  //     feature.get("img_attribution") != undefined
+  //   ) {
+  //     popupContent +=
+  //       "<div class='flex'><p class='text-xs mx-auto align-top mb-1'>Image: " +
+  //       feature.get("img_attribution") +
+  //       "</p></div>";
+  //   }
+  // } else {
+  //   if (!popupDiv?.classList.contains("ol-popup-min-width")) {
+  //     popupDiv?.classList.add("ol-popup-min-width");
+  //   }
+  // }
+
+  // New Image
+  const images_db_array = await get_images_table(feature.get("feature_id"));
+  console.log(images_db_array);
+  if (images_db_array.length > 0 && popupDiv != null && popupDiv != undefined) {
+    popupDiv.classList.remove("ol-popup-min-width");
+    popupDiv.classList.add("min-w-[400px]");
+    let image_div =
+      "<div id='image-div' class='flex flex-col justify-center items-center'>";
+    let img_element =
+      "<img id='image-element' class='popup-image object-scale-down' width=380px height=380px' />";
+    image_div += img_element + "</div>";
+    let attr_div =
+      "<div class='flex justify-between'>" +
+      "<div id='image-description' class='markdownlinkcolor text-2xs'></div>" +
+      "<div id='image-attribution' class='markdownlinkcolor text-2xs text-right'></div>" +
+      "</div>";
+    let button_div =
+      "<div class='flex justify-center items-center space-x-2 my-1'>" +
+      "<button id='previous-image' class='image-active'>Previous</button>" +
+      "<button id='next-image' class='image-active'>Next</button>" +
+      "</div>";
+    popupContent += image_div + attr_div + button_div;
   } else {
     if (!popupDiv?.classList.contains("ol-popup-min-width")) {
       popupDiv?.classList.add("ol-popup-min-width");
@@ -53,10 +84,23 @@ export function popupContents(feature: FeatureLike): string {
   }
 
   // History
-  if (feature.get("history") != null && feature.get("history") != undefined) {
+  if (
+    feature.get("history") != null &&
+    feature.get("history") != undefined &&
+    popupDiv != null &&
+    popupDiv != undefined
+  ) {
+    if (!popupDiv.classList.contains("min-w-[400px]")) {
+      popupDiv.classList.remove("ol-popup-min-width");
+      popupDiv.classList.add("min-w-[400px]");
+    }
     popupContent += "<div class='markdown text-sm markdownlinkcolor'>";
     popupContent += marked(feature.get("history"));
     popupContent += "</div>";
+  } else {
+    if (!popupDiv?.classList.contains("ol-popup-min-width")) {
+      popupDiv?.classList.add("ol-popup-min-width");
+    }
   }
 
   // Citations
@@ -81,5 +125,5 @@ export function popupContents(feature: FeatureLike): string {
   //   }
 
   popupContent += "</div>";
-  return popupContent;
+  return [popupContent, images_db_array];
 }
