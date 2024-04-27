@@ -198,14 +198,16 @@ vashonMap.on("singleclick", async function (evt) {
     const coordinate = evt.coordinate;
     let [popupContent, images_db_array] = await popupContents(feature);
     content.innerHTML = popupContent;
-    createImageSwitcher(
-      images_db_array,
-      "next-image",
-      "previous-image",
-      "image-element",
-      "image-attribution",
-      "image-description"
-    );
+    if (images_db_array.length > 0) {
+      createImageSwitcher(
+        images_db_array,
+        "next-image",
+        "previous-image",
+        "image-element",
+        "image-attribution",
+        "image-description"
+      );
+    }
     overlay.setPosition(coordinate);
     // content.classList.toggle("popup-active");
   } else {
