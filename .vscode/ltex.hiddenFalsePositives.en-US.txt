@@ -17,3 +17,11 @@
 {"rule":"TOO_TO","sentence":"^\\Qimageid: primary key\nimage_url: URL to image location either local (served from website root) or external\nimage_descrip: brief description of the image\nfeature_id: Foreign key to link to what feature in \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q the image is related too\nimage_attribution\\E$"}
 {"rule":"MORFOLOGIK_RULE_EN_US","sentence":"^\\Qimageid: primary key\nimage_url: URL to image location either local (served from website root) or external\nimage_descrip: brief description of the image\nfeature_id: Foreign key to link to what feature in \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q the image is related to\nimage_attribution: Attribution for the image (in markdown)\\E$"}
 {"rule":"MORFOLOGIK_RULE_EN_US","sentence":"^\\Qimageid: primary key\nimage_url: URL to image location either local (served from website root) or external\nimage_descrip: brief description of the image\nfeature_id: Foreign key to link to what feature in \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q the image is related to\nimage_attribution: Attribution for the image (in Markdown)\\E$"}
+{"rule":"UPPERCASE_SENTENCE_START","sentence":"^\\Qimage_id: Primary key.\\E$"}
+{"rule":"UPPERCASE_SENTENCE_START","sentence":"^\\Qfeature_id: Foreign key to link to what feature in \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q the image is related to.\\E$"}
+{"rule":"UPPERCASE_SENTENCE_START","sentence":"^\\Qimage_url: URL to image location either local (served from website root) or external.\\E$"}
+{"rule":"UPPERCASE_SENTENCE_START","sentence":"^\\Qimage_descrip: A brief description of the image.\\E$"}
+{"rule":"MORFOLOGIK_RULE_EN_US","sentence":"^\\Qimage_descrip: A brief description of the image.\\E$"}
+{"rule":"MORFOLOGIK_RULE_EN_US","sentence":"^\\Qimage_url: URL to image location either local (served from website root) or external.\\E$"}
+{"rule":"UPPERCASE_SENTENCE_START","sentence":"^\\Qimage_attribution: Attribution for the image (in Markdown).\\E$"}
+{"rule":"UPPERCASE_SENTENCE_START","sentence":"^\\Qimage_date: A date for the image.\\E$"}

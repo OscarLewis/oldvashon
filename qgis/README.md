@@ -23,11 +23,12 @@ The "feature_id" column in `images` is a foreign key to the "pk" column in `vash
 
 Columns in `images`:
 
-- imageid: primary key
-- image_url: URL to image location either local (served from website root) or external
-- image_descrip: brief description of the image
-- feature_id: Foreign key to link to what feature in `vashon_points` the image is related to
-- image_attribution: Attribution for the image (in Markdown)
+- image_id: Primary key.
+- feature_id: Foreign key to link to what feature in `vashon_points` the image is related to.
+- image_url: URL to image location either local (served from website root) or external.
+- image_descrip: A brief description of the image.
+- image_attribution: Attribution for the image (in Markdown).
+- image_date: A date for the image.
 
 If you need to add the basemap to your QGIS install, add a new XYZ connection with the standard tile resolution (256x256) using the following URL: https://gis.apfo.usda.gov/arcgis/rest/services/NAIP/USDA_CONUS_PRIME/ImageServer/tile/{z}/{y}/{x}
 
