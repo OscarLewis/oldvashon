@@ -25,3 +25,4 @@
 {"rule":"MORFOLOGIK_RULE_EN_US","sentence":"^\\Qimage_url: URL to image location either local (served from website root) or external.\\E$"}
 {"rule":"UPPERCASE_SENTENCE_START","sentence":"^\\Qimage_attribution: Attribution for the image (in Markdown).\\E$"}
 {"rule":"UPPERCASE_SENTENCE_START","sentence":"^\\Qimage_date: A date for the image.\\E$"}
+{"rule":"UPPERCASE_SENTENCE_START","sentence":"^\\Qgeom: The Point geometry for the feature, in ESPG:2285.\\E$"}

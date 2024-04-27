@@ -17,6 +17,7 @@ Each feature contains the following attributes:
 - end_year: A date (when a business closed, etc.)
 - author: Who wrote the feature.
 - summary: not currently used, could be similar to description.
+- geom: The Point geometry for the feature, in ESPG:2285.
 
 All image information is stored in the `images` table. This is so multiple images can be stored for each feature.
 The "feature_id" column in `images` is a foreign key to the "pk" column in `vashon_points`.
