@@ -1,4 +1,5 @@
 import { marked } from "marked";
+import customHeadingId from "marked-custom-heading-id";
 
 // Make all links target "_blank"
 let renderer = new marked.Renderer();
@@ -7,12 +8,16 @@ renderer.link = function (href, title, text) {
   return link.replace("<a", "<a target='_blank' ");
 };
 
-// https://www.npmjs.com/package/marked-custom-heading-id
-
 // Set new renderer options
 marked.setOptions({
   renderer: renderer,
 });
+
+// https://www.npmjs.com/package/marked-custom-heading-id
+// Use custom heading id's in marked in the format
+// "# heading {#custom-id}" which marked will convert to
+// <h1 id="custom-id">heading</h1>
+marked.use(customHeadingId());
 
 async function getMDFile(file_name: string): Promise<string> {
   return await fetch(file_name)

@@ -1277,6 +1277,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"marked-custom-heading-id@npm:^2.0.7":
+  version: 2.0.7
+  resolution: "marked-custom-heading-id@npm:2.0.7"
+  peerDependencies:
+    marked: ">=1 <13"
+  checksum: 10c0/47dc698aece589651da72e6fe491601ae72cd049248b59ee1d0b1f9f55f876a0e3db7268b78f15afba50b7eb4a824fcf815286e996cc2918e4436584d5d4b78f
+  languageName: node
+  linkType: hard
+
 "marked@npm:^12.0.2":
   version: 12.0.2
   resolution: "marked@npm:12.0.2"
@@ -1534,6 +1543,7 @@ __metadata:
     "@types/proj4": "npm:^2"
     autoprefixer: "npm:^10.4.19"
     marked: "npm:^12.0.2"
+    marked-custom-heading-id: "npm:^2.0.7"
     ol: "npm:^9.1.0"
     postcss: "npm:^8.4.38"
     proj4: "npm:^2.11.0"
