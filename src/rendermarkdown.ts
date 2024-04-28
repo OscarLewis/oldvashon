@@ -13,6 +13,8 @@ marked.setOptions({
   renderer: renderer,
 });
 
+// Maybe use https://www.npmjs.com/package/marked-footnote
+
 // https://www.npmjs.com/package/marked-custom-heading-id
 // Use custom heading id's in marked in the format
 // "# heading {#custom-id}" which marked will convert to
