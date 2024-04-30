@@ -26,3 +26,5 @@
 {"rule":"UPPERCASE_SENTENCE_START","sentence":"^\\Qimage_attribution: Attribution for the image (in Markdown).\\E$"}
 {"rule":"UPPERCASE_SENTENCE_START","sentence":"^\\Qimage_date: A date for the image.\\E$"}
 {"rule":"UPPERCASE_SENTENCE_START","sentence":"^\\Qgeom: The Point geometry for the feature, in ESPG:2285.\\E$"}
+{"rule":"SENTENCE_WHITESPACE","sentence":"^\\QF Van Olinda built the store,\\E$"}
+{"rule":"SENTENCE_WHITESPACE","sentence":"^\\QF Van Olinda built the store, along with\\E$"}

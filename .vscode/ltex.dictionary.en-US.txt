@@ -11,3 +11,5 @@ SpatiaLite
 Vite
 Spatialite
 ESPG
+Olinda
+Colvos
