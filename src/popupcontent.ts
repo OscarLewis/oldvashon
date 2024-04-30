@@ -83,24 +83,20 @@ export async function popupContents(
   }
 
   // History
-  if (
-    feature.get("history") != null &&
-    feature.get("history") != undefined &&
-    popupDiv != null &&
-    popupDiv != undefined
-  ) {
-    if (!popupDiv.classList.contains("min-w-[400px]")) {
-      popupDiv.classList.remove("ol-popup-min-width");
-      popupDiv.classList.add("min-w-[400px]");
+  if (popupDiv != null && popupDiv != undefined)
+    if (feature.get("history") != null && feature.get("history") != undefined) {
+      if (popupDiv.classList.contains("ol-popup-min-width")) {
+        popupDiv.classList.remove("ol-popup-min-width");
+        popupDiv.classList.add("min-w-[400px]");
+      }
+      popupContent += "<div class='markdown text-sm markdownlinkcolor'>";
+      popupContent += marked(feature.get("history"));
+      popupContent += "</div>";
+    } else {
+      if (!popupDiv.classList.contains("ol-popup-min-width")) {
+        popupDiv.classList.add("ol-popup-min-width");
+      }
     }
-    popupContent += "<div class='markdown text-sm markdownlinkcolor'>";
-    popupContent += marked(feature.get("history"));
-    popupContent += "</div>";
-  } else {
-    if (!popupDiv?.classList.contains("ol-popup-min-width")) {
-      popupDiv?.classList.add("ol-popup-min-width");
-    }
-  }
 
   // Citations
   if (
