@@ -36,9 +36,9 @@ export async function popupContents(
       popupDiv.classList.remove("ol-popup-min-width");
       popupDiv.classList.add("min-w-[400px]");
       let image_div =
-        "<div id='image-div' class='flex flex-col justify-center items-center'>";
+        "<div id='image-div' class='flex flex-col justify-center object-scale-down items-center'>";
       let img_element =
-        "<img id='image-element' class='popup-image object-scale-down' width=380px height=380px' />";
+        "<img id='image-element' class='popup-image' width=380px height=380px' />";
       image_div += img_element + "</div>";
       let attr_div =
         "<div class='flex justify-between'>" +
