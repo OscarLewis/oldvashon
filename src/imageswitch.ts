@@ -23,6 +23,7 @@ export function createImageSwitcher(
   let image_array: string[] = [];
   let img_attributions: string[] = [];
   let img_descrips: string[] = [];
+
   images.forEach(
     (el: {
       image_url: string;
