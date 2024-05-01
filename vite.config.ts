@@ -4,6 +4,7 @@ import { resolve } from "path";
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [],
+  assetsInclude: ["**/*.md"],
   esbuild: {
     supported: {
       "top-level-await": true, //browsers can handle top-level-await features
@@ -16,6 +17,7 @@ export default defineConfig({
       input: {
         main: resolve(__dirname, "index.html"),
         about: resolve(__dirname, "about/index.html"),
+        blog: resolve(__dirname, "blog/index.html"),
       },
     },
   },

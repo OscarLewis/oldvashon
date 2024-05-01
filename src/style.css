@@ -3,6 +3,8 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Tailwind strips all default css styling so I have to add back some style for links and whatnot */
+
 .bluelinkcolor {
   @apply underline 
     text-blue-600 
@@ -15,17 +17,41 @@
   text-decoration: none;
 }
 
-div.markdownlinkcolor > p > a {
+hr.blackline {
+  border: 1px solid black;
+  border-radius: 7px 7px 7px 7px;
+}
+
+/* CSS for markdown divs */
+
+div.markdownlinkcolor a {
   @apply underline 
     text-blue-600 
     hover:text-blue-800 
     /* visited:text-purple-600 */;
 }
 
-hr.blackline {
-  border: 1px solid black;
-  border-radius: 7px 7px 7px 7px;
+div.markdown-regular ul {
+  @apply ml-8;
 }
+
+div.markdown-regular h1 {
+  @apply text-xl font-semibold;
+}
+
+div.markdown-regular h2 {
+  @apply text-base;
+}
+
+div.markdown-regular h3 {
+  @apply text-sm;
+}
+
+div.markdown-regular h4 {
+  @apply text-xs;
+}
+
+/* Image switcher buttons */
 
 button.image-active {
   @apply bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 rounded text-2xs text-center;
