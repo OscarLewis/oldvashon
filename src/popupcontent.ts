@@ -88,6 +88,24 @@ export async function popupContents(
     popupContent += citations_div;
   }
 
+  // Last edited
+  if (
+    feature.get("last_edited") != null &&
+    feature.get("last_edited") != undefined &&
+    feature.get("history") != null &&
+    feature.get("history") != undefined
+  ) {
+    let last_edited_div =
+      "<div class='text-2xs'>" +
+      "<p>Last edited: " +
+      feature.get("last_edited");
+    if (feature.get("author") != null && feature.get("author") != undefined) {
+      last_edited_div += " by " + feature.get("author");
+    }
+    last_edited_div += "</div>";
+    popupContent += last_edited_div;
+  }
+
   //   popupContent += "</div>";
 
   // Author
