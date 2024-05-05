@@ -28,3 +28,5 @@
 {"rule":"UPPERCASE_SENTENCE_START","sentence":"^\\Qgeom: The Point geometry for the feature, in ESPG:2285.\\E$"}
 {"rule":"SENTENCE_WHITESPACE","sentence":"^\\QF Van Olinda built the store,\\E$"}
 {"rule":"SENTENCE_WHITESPACE","sentence":"^\\QF Van Olinda built the store, along with\\E$"}
+{"rule":"LITTLE_BIT","sentence":"^\\QThe name is a little bit of a misnomer, as plenty of the locations detailed in this geography\\E$"}
+{"rule":"FROM_FORM","sentence":"^\\QIf you find this and want to contribute, I made a Google form This project is available on GitHub if you want to make contributions.\\E$"}

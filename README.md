@@ -8,6 +8,8 @@ Built by [Oscar Lewis](https://oscarlewis.dev/).
 
 ## Building
 
+To build this site, you must have [Yarn](https://yarnpkg.com/) installed. Instructions to do so can be found [here](https://yarnpkg.com/getting-started/install).
+
 Run `yarn install` to install dependencies before running `yarn build` to build the static website in the dist folder.
 
 Running `yarn dev` will start a local development server.

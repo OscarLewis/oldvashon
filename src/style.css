@@ -51,6 +51,10 @@ div.markdown-regular h4 {
   @apply text-xs;
 }
 
+div.markdown-blog p {
+  @apply my-2;
+}
+
 /* Image switcher buttons */
 
 button.image-active {
