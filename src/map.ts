@@ -241,7 +241,7 @@ const color_cherry_coke = [168, 56, 0, 100];
 /* Create a new point style for our dots on the map */
 const point_style = new Style({
   image: new CircleStyle({
-    radius: 3,
+    radius: 5,
     fill: new Fill({ color: color_cherry_coke }),
     stroke: new Stroke({ color: "#000000", width: 0.5 }),
   }),
